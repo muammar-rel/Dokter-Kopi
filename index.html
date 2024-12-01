@@ -23,9 +23,6 @@
       defer
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
     ></script>
-
-    <!-- app -->
-    <script src="src/app.js"></script>
   </head>
   <body>
     <!-- Navbar start -->
@@ -90,7 +87,11 @@
         </h4>
 
         <div class="form-container" x-show="$store.cart.items.length">
-          <form action="" id="checkoutForm">
+          <form
+            action=""
+            id="checkoutForm"
+            x-data="{ name: '', email: '', phone: '', address: '' }"
+          >
             <input
               type="hidden"
               name="items"
@@ -99,6 +100,7 @@
             <input type="hidden" name="total" x-model="$store.cart.total" />
 
             <h5>Customer Detail</h5>
+
             <label for="name">
               <span>Name</span>
               <input
@@ -106,7 +108,7 @@
                 name="name"
                 id="name"
                 placeholder="Enter your name"
-                required
+                x-model="name"
               />
             </label>
 
@@ -117,7 +119,7 @@
                 name="email"
                 id="email"
                 placeholder="Enter your email"
-                required
+                x-model="email"
               />
             </label>
 
@@ -128,7 +130,7 @@
                 name="phone"
                 id="phone"
                 placeholder="Enter your phone number"
-                required
+                x-model="phone"
               />
             </label>
 
@@ -139,11 +141,17 @@
                 id="address"
                 rows="3"
                 placeholder="Enter your full address"
-                required
+                x-model="address"
               ></textarea>
             </label>
 
-            <button type="submit" id="checkout-button" class="checkout-button">
+            <!-- Tombol Checkout -->
+            <button
+              type="submit"
+              id="checkout-button"
+              class="checkout-button"
+              x-bind:disabled="!name || !email || !phone || !address"
+            >
               Checkout
             </button>
           </form>
@@ -445,5 +453,8 @@
 
     <!-- My Javascript -->
     <script src="js/script.js"></script>
+
+    <!-- app -->
+    <script src="src/app.js"></script>
   </body>
 </html>

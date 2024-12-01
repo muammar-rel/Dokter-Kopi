@@ -68,24 +68,40 @@ document.addEventListener("alpine:init", () => {
   });
 });
 
+// form validation
+const checkoutButton = document.querySelector(".checkout-button");
+checkoutButton.Disabled = true;
+
+const form = document.querySelector("#checkoutForm");
+
+form.addEventListener("keyup", function () {
+  for (let i = 0; i < form.elements.length; i++) {
+    if (form.elements[i].value.length !== 0) {
+      checkoutButton.classList.remove("disabled");
+      checkoutButton.classList.add("disabled");
+    } else {
+      return false;
+    }
+  }
+  checkoutButton.disabled = false;
+  checkoutButton.classList.add("disabled");
+});
+
 // kirim data setelah tombol checkout di klik
 document.addEventListener("DOMContentLoaded", function () {
   const checkoutButton = document.querySelector("#checkout-button");
   const form = document.querySelector("#checkoutForm");
 
-  // Event listener untuk tombol checkout
   checkoutButton.addEventListener("click", function (e) {
-    e.preventDefault(); // Mencegah form dikirim secara default
+    e.preventDefault();
 
     // Membuat objek FormData dari form
     const formData = new FormData(form);
     const data = new URLSearchParams(formData);
-    const objData = Object.fromEntries(data); // Mengonversi FormData ke objek biasa
+    const objData = Object.fromEntries(data);
 
     // Format pesan untuk WhatsApp
     const message = formatMessage(objData);
-
-    // Mengirimkan pesan ke WhatsApp
     window.open(
       "https://wa.me/6282296764765?text=" + encodeURIComponent(message),
       "_blank"
@@ -100,14 +116,14 @@ document.addEventListener("DOMContentLoaded", function () {
     No HP : ${obj.phone}
     Alamat : ${obj.address}
     
-    Data Pesanan:
+Data Pesanan:
     ${JSON.parse(obj.items)
       .map(
         (item) => `${item.name} (${item.quantity} x ${rupiah(item.total)})\n`
       )
       .join("")}
 
-    Total Bayar: ${rupiah(obj.total)}`;
+Total Bayar: ${rupiah(obj.total)}`;
   };
 
   // Fungsi untuk memformat angka menjadi mata uang (rupiah)
