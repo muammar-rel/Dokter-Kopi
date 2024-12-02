@@ -269,7 +269,7 @@ body {
 
 /* Kelas untuk tombol yang dinonaktifkan */
 .checkout-button.disabled {
-  background-color: royalblue; /* Abu-abu */
+  background-color: royalblue;
   color: white;
   cursor: pointer;
   /* Disabled cursor */
