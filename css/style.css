@@ -255,23 +255,23 @@ body {
 /* Perbaikan selector untuk button */
 .form-container .checkout-button {
   padding: 6px 14px;
-  background-color: #999;
+  background-color: royalblue;
   color: #333;
   font-weight: bold;
   font-size: 1rem;
   border-radius: 20px;
   margin: 1rem auto;
-  cursor: not-allowed;
+  cursor: pointer;
   display: inline-block;
   border: none;
   width: 50%; /* Menambahkan lebar */
 }
 
 /* Kelas untuk tombol yang dinonaktifkan */
-.checkout-button.disabled {
-  background-color: royalblue;
+.checkout-button:disabled {
+  background-color: #999;
   color: white;
-  cursor: pointer;
+  cursor: not-allowed;
   /* Disabled cursor */
 }
 

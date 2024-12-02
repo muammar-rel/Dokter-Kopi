@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Gagal mendapatkan token transaksi: " + result.error);
       }
     } catch (error) {
-      console.log("Terjadi kesalahan: " + error.message);
+      console.log("Pastikan Folmulirnya Valid: " + error.message);
     }
   });
 });
